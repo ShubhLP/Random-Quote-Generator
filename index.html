@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--BOOTSTRAP-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous" />
+    
+    <!--FONT AWESOME-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
+    <title>Random Quote Generator For Musicians</title>
+    <script src="quotes.js"></script>
+
+    <script>
+        // const QUOTESTORE = [
+        //     {
+        //         quote: "Sometimes you want to give up the guitar, you’ll hate the guitar. But if you stick with it, you’re gonna be rewarded.",
+        //         author: "Jimi Hendrix"
+        //     },
+        //     {
+        //         quote: "Guitars are fun. There are plenty of different kinds to play. They look cool. They sound cool. Don't *you* want to play guitar?",
+        //         author: "Joe Satriani"
+        //     },
+        //     {
+        //         quote: "Everybody is just a stranger, but that's the danger in going my own way.",
+        //         author: "John Mayer"
+        //     },
+        //     {
+        //         quote: "If you want to be a rock star or just be famous, then run down the street naked, you’ll make the news or something. But if you want music to be your livelihood, then play, play, play and play! And eventually, you’ll get to where you want to be.",
+        //         author: "Eddie Van Halen"
+        //     },
+        //     {
+        //         quote: "I wanted to create music that was so different that my mother could tell from anyone else.”",
+        //         author: "Les Paul"
+        //     },
+        //     {
+        //         quote: "Notes and chords have become my second language and, more often than not, that vocabulary expresses what I feel when language fails me.",
+        //         author: "Slash"
+        //     },
+        //     {
+        //         quote: "I believe every guitar player inherently has something unique about their playing. They just have to identify what makes them different and develop it.",
+        //         author: "Jimmy Page"
+        //     }
+        // ]
+        window.onload = init;
+        function init() {
+            generateQuote()
+        }
+
+        function generateQuote() {
+            let quoteSize = QUOTESTORE.length;
+            let randomIndex = Math.floor(Math.random() * quoteSize);
+            let randomQuoteData = QUOTESTORE[randomIndex];
+
+            let twitterLink = "https://twitter.com/intent/tweet?hashtags=quotes&amp;text=";
+
+            let quoteInApiFormat = randomQuoteData.quote.replace(/ /g, "%20");
+            twitterLink += quoteInApiFormat;
+
+            let authorInApiFormat = randomQuoteData.author.replace(/ /g, "%20");
+            twitterLink += " - " + authorInApiFormat;
+
+            document.getElementById("tweet-quote").href = twitterLink;
+            document.getElementById("text").innerText = randomQuoteData.quote;
+            document.getElementById("author").innerText = randomQuoteData.author;
+        }
+    </script>
+</head>
+
+<body>
+    <script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
+    <div class="container justify-content-center ">
+        <div class="row py-5">
+            <div class="col-md-8 offset-md-2">
+                <wrapper id="quote-box">
+                    <div class="card">
+                        <div class="card-header text-center">
+                            Random Quote Generator
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <div id="text"></div>
+                            </h5>
+                            <p class="card-text">
+                            <div id="author" style="float: right;"></div>
+                            </p>
+                            <button id="new-quote" onClick="generateQuote();" class="btn btn-block btn-success">New
+                                Quote</button>
+                            <a href="#" target="_blank" id="tweet-quote" class="btn btn-block btn-primary"><i
+                                    class="fab fa-twitter"></i> Tweet</a>
+                        </div>
+                    </div>
+                </wrapper>
+            </div>
+        </div>
+    </div>
+    <!--JAVASCRIPT-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+        integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js"
+        integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
